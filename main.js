@@ -63,9 +63,9 @@ function displayBookInfo (i,element) {
         const title = element.querySelector(`#div${i} > .p1`);
         title.innerHTML = myLibrary[i].title;
         const author = element.querySelector(`#div${i} > .p2`);
-        author.innerHTML = myLibrary[i].author;
+        author.innerHTML = "by "+ myLibrary[i].author;
         const pages = element.querySelector(`#div${i} > .p3`);
-        pages.innerHTML = myLibrary[i].pages;
+        pages.innerHTML = myLibrary[i].pages + " pages";
         const read = element.querySelector(`#div${i} > .p4`);
         read.innerHTML = myLibrary[i].read;
 }
