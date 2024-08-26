@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card {
+    border: 2px solid red;
+    width: 200px;
+    height: 200px;
+}
+
+p {
+    border: 2px solid black;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 120px 1fr;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    background-color: rgb(77, 184, 255);
+    font-family: "Courgette";
+    font-size: 1.3rem;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 1rem;
+    padding: 3px 20px 3px 20px;
+    border-radius: 5px;
+    background-color: rgb(255, 215, 0);
+    font-family: "Courgette";
+    border: none;
+}
