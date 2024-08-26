@@ -57,9 +57,10 @@ button {
 
 .p1 {
     font-weight: bold;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
 
 .p2, .p3, .p4 {
     font-size: 1rem;
+    padding-bottom: 4px;
 }
