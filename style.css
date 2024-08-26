@@ -44,7 +44,7 @@ button {
 .container {
     display: grid;
     grid-template-columns: repeat(3, 300px);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 190px);
     grid-auto-columns: 1fr;
     justify-content: center;
     gap: 20px;
