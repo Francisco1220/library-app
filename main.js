@@ -72,12 +72,13 @@ function displayBookInfo (i,element) {
 
 const dialog = document.querySelector("dialog");
 const showFormBtn = document.querySelector("h1 + button");
-const submitFormBtn = document.querySelector("type[submit]");
+const submitFormBtn = document.getElementById("submit");
 
 showFormBtn.addEventListener("click", () => {
     dialog.showModal();
 });
 
-submitFormBtn.addEventListener("click", (event) => {
+submitFormBtn.addEventListener("click", function(event) {
     dialog.close();
+    event.preventDefault();
 });
