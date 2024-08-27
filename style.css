@@ -122,3 +122,13 @@ p > label:first-child {
     font-size: 1.4rem;
     padding: 5px 35px 5px 35px;
 }
+
+.deleteBtn {
+    background-color: #31312F;
+    color: white;
+    font-family: "Roboto";
+    position: relative;
+    bottom: -20px;
+    left: 175px;
+    padding: 10px 15px 10px 15px;
+}
