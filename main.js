@@ -83,6 +83,9 @@ submitFormBtn.addEventListener("click", function(event) {
     }
     addBookToLibrary(new Book(title, author, pages, read));
     addCards();
+    // clears form inputs
+    let inputs = document.querySelectorAll("input");
+    inputs.forEach(input => input.value = "");
 });
 
 // Create button and add to DOM
