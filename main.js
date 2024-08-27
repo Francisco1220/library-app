@@ -7,22 +7,12 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-/* Manually adding books for now */
-const book1 = new Book("The Hobbit", "J.R.R Tolkien", 320, "read");
-const book2 = new Book("Life of Christ", "Fulton Sheen", 690, "read")
-
-
-
 /* Takes existing myLibrary array and adds new additions(objects) as part of array */
 function addBookToLibrary (...book) {
     for (let i = 0; i < book.length; i++) {
         myLibrary.push(book[i]);
     }
 }
-
-/* Calls function */
-addBookToLibrary(book1);
-addBookToLibrary(book2);
 
 // Create parent div container
 const containerDiv = document.createElement("div");
@@ -32,8 +22,8 @@ body.appendChild(containerDiv);
 
 // Add the required number of child divs and p elements(one for each book) and append them to the container div 
 let specificChildDiv;
+let i = 0;
 function addCards () {
-    for (let i = 0; i < myLibrary.length; i++) {
         const childDiv = document.createElement("div");
         childDiv.setAttribute("class", "card");
         containerDiv.appendChild(childDiv); 
@@ -53,11 +43,9 @@ function addCards () {
         }
         displayBookInfo(i, childDiv);
         createRemoveBtn(childDiv);
-    }
+        i++;
+        console.log(i);
 }
-
-
-addCards();
 
 // Displays book info
 function displayBookInfo (i,element) {
@@ -82,10 +70,22 @@ showFormBtn.addEventListener("click", () => {
 submitFormBtn.addEventListener("click", function(event) {
     dialog.close();
     event.preventDefault();
+    let title = document.getElementById("book_title").value;
+    let author = document.getElementById("book_author").value;
+    let pages = document.getElementById("book_pages").value;
+    let yesRead = document.getElementById("read_yes");
+    let notRead = document.getElementById("read_no");
+    let read;
+    if (yesRead.checked) {
+        read = document.getElementById("read_yes").value;
+    } else if (notRead.checked) {
+        read = document.getElementById("read_no").value;
+    }
+    addBookToLibrary(new Book(title, author, pages, read));
+    addCards();
 });
 
 // Create button and add to DOM
-
 function createRemoveBtn (parentNode) {
         const deleteBookBtn = document.createElement("button");
         deleteBookBtn.innerHTML = "Remove";
