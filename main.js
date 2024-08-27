@@ -51,7 +51,8 @@ function addCards () {
             }
             childDiv.appendChild(p);
         }
-        displayBookInfo(i,childDiv);
+        displayBookInfo(i, childDiv);
+        createRemoveBtn(childDiv);
     }
 }
 
@@ -82,3 +83,12 @@ submitFormBtn.addEventListener("click", function(event) {
     dialog.close();
     event.preventDefault();
 });
+
+// Create button and add to DOM
+
+function createRemoveBtn (parentNode) {
+        const deleteBookBtn = document.createElement("button");
+        deleteBookBtn.innerHTML = "Remove";
+        deleteBookBtn.setAttribute("class", "deleteBtn");
+        parentNode.appendChild(deleteBookBtn);
+}
