@@ -43,7 +43,7 @@ button {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(auto-fill, 300px);
     grid-template-rows: repeat(3, 190px);
     grid-auto-columns: 1fr;
     justify-content: center;
