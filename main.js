@@ -69,3 +69,15 @@ function displayBookInfo (i,element) {
         const read = element.querySelector(`#div${i} > .p4`);
         read.innerHTML = myLibrary[i].read;
 }
+
+const dialog = document.querySelector("dialog");
+const showFormBtn = document.querySelector("h1 + button");
+const submitFormBtn = document.querySelector("type[submit]");
+
+showFormBtn.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+submitFormBtn.addEventListener("click", (event) => {
+    dialog.close();
+});
