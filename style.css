@@ -64,3 +64,61 @@ button {
     font-size: 1rem;
     padding-bottom: 4px;
 }
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4)
+}
+
+dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+    height: 50%;
+    border-radius: 15px;
+    border: none;
+}
+
+form {
+    display: grid;
+    gap: 5px;
+    font-family: "Roboto";
+    padding: 1rem;
+}
+
+form > input {
+    width: 280px;
+    height: 35px;
+    padding-left: 8px;
+    font-size: 20px;
+}
+
+form > label {
+    font-size: 1.3rem;
+}
+
+form > p {
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: auto 1fr;
+    gap: 5px;
+
+}
+
+p > label:first-child {
+    grid-row: 2;
+    
+}
+
+#book_pages {
+    width: 120px;
+}
+
+#submit {
+    position: relative;
+    bottom: -30px;
+    justify-self: start;
+    font-size: 1.4rem;
+    padding: 5px 35px 5px 35px;
+}
