@@ -15,7 +15,7 @@
 
 body {
     display: grid;
-    grid-template-rows: 120px 1fr;
+    grid-template-rows: 150px 1fr;
 }
 
 .heading {
@@ -25,7 +25,7 @@ body {
     padding-top: 10px;
     background-color: #E5E1D8;
     font-family: "Courgette";
-    font-size: 1.3rem;
+    font-size: 1.6rem;
 }
 
 h1 {
@@ -33,11 +33,11 @@ h1 {
 }
 
 button {
-    font-size: 1rem;
-    padding: 3px 20px 3px 20px;
-    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 10px 30px 10px 30px;
+    border-radius: 8px;
     background-color: rgb(255, 215, 0);
-    font-family: "Courgette";
+    font-family: "Roboto";
     border: none;
 }
 
@@ -57,12 +57,19 @@ button {
 
 .p1 {
     font-weight: bold;
+    font-size: 1.4rem;
     padding-bottom: 8px;
 }
 
 .p2, .p3, .p4 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding-bottom: 4px;
+}
+
+.p4 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    
 }
 
 dialog::backdrop {
@@ -91,6 +98,8 @@ form > input {
     height: 35px;
     padding-left: 8px;
     font-size: 20px;
+    border-radius: 10px;
+    border: 2px solid grey;
 }
 
 form > label {
@@ -117,7 +126,7 @@ p > label:first-child {
 
 #submit {
     position: relative;
-    bottom: -30px;
+    bottom: -20px;
     justify-self: start;
     font-size: 1.4rem;
     padding: 5px 35px 5px 35px;
@@ -128,7 +137,7 @@ p > label:first-child {
     color: white;
     font-family: "Roboto";
     position: relative;
-    bottom: -20px;
-    left: 175px;
+    bottom: 0px;
+    left: 165px;
     padding: 10px 15px 10px 15px;
 }

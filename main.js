@@ -27,7 +27,7 @@ function addCards () {
         const childDiv = document.createElement("div");
         childDiv.setAttribute("class", "card");
         containerDiv.appendChild(childDiv); 
-        childDiv.id = `div${i}`
+        childDiv.id = `div${i}`;
         for (let i = 0; i < 4; i++) {
             const p = document.createElement("p");
             if (i === 0) {
@@ -44,19 +44,28 @@ function addCards () {
         displayBookInfo(i, childDiv);
         createRemoveBtn(childDiv);
         i++;
-        console.log(i);
 }
+
+let n = 0;
 
 // Displays book info
 function displayBookInfo (i,element) {
         const title = element.querySelector(`#div${i} > .p1`);
         title.innerHTML = myLibrary[i].title;
         const author = element.querySelector(`#div${i} > .p2`);
+        author.style.fontStyle = "italic";
         author.innerHTML = "by "+ myLibrary[i].author;
         const pages = element.querySelector(`#div${i} > .p3`);
         pages.innerHTML = myLibrary[i].pages + " pages";
         const read = element.querySelector(`#div${i} > .p4`);
-        read.innerHTML = myLibrary[i].read;
+        if (n === 0) {
+            read.style.color = "rgb(0, 179, 0)";
+            read.innerHTML = myLibrary[i].read;
+        } else if (n === 1) {
+            read.style.color = "rgb(255, 0, 0)";
+            read.innerHTML = myLibrary[i].read;
+            n--;
+        }
 }
 
 const dialog = document.querySelector("dialog");
@@ -77,9 +86,10 @@ submitFormBtn.addEventListener("click", function(event) {
     let notRead = document.getElementById("read_no");
     let read;
     if (yesRead.checked) {
-        read = document.getElementById("read_yes").value;
+        read = "Read";
     } else if (notRead.checked) {
-        read = document.getElementById("read_no").value;
+        read = "Read";
+        n++;
     }
     addBookToLibrary(new Book(title, author, pages, read));
     addCards();
