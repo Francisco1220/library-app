@@ -132,10 +132,18 @@ p > label:first-child {
     padding: 5px 35px 5px 35px;
 }
 
-.deleteBtn {
+.deleteBtn, .toggleBtn {
     background-color: #31312F;
     color: white;
     font-family: "Roboto";
+}
+
+.toggleBtn {
+    position: relative;
+    top: -50px;
+    right: -63px;
+}
+.deleteBtn {
     position: relative;
     bottom: 0px;
     left: 165px;
