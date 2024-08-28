@@ -20,6 +20,8 @@ containerDiv.setAttribute("class", "container")
 const body = document.querySelector("body");
 body.appendChild(containerDiv);
 
+let deleteButtons;
+let getElementsAtIndex;
 // Add the required number of child divs and p elements(one for each book) and append them to the container div 
 let specificChildDiv;
 let i = 0;
@@ -28,6 +30,7 @@ function addCards () {
         childDiv.setAttribute("class", "card");
         containerDiv.appendChild(childDiv); 
         childDiv.id = `div${i}`;
+        childDiv.setAttribute("data-index", `${i}`);
         for (let i = 0; i < 4; i++) {
             const p = document.createElement("p");
             if (i === 0) {
@@ -44,6 +47,8 @@ function addCards () {
         displayBookInfo(i, childDiv);
         createRemoveBtn(childDiv);
         i++;
+        deleteButtons = document.querySelectorAll(".deleteBtn");
+        deleteBook();
 }
 
 let n = 0;
@@ -52,16 +57,16 @@ let n = 0;
 function displayBookInfo (i,element) {
         const title = element.querySelector(`#div${i} > .p1`);
         title.innerHTML = myLibrary[i].title;
+        title.setAttribute("data-index", `${i}`);
         const author = element.querySelector(`#div${i} > .p2`);
         author.style.fontStyle = "italic";
         author.innerHTML = "by "+ myLibrary[i].author;
+        author.setAttribute("data-index", `${i}`);
         const pages = element.querySelector(`#div${i} > .p3`);
-         pages.innerHTML = myLibrary[i].pages + " pages";
+        pages.innerHTML = myLibrary[i].pages + " pages";
+        pages.setAttribute("data-index", `${i}`);
         const read = element.querySelector(`#div${i} > .p4`);
-        console.log(title);
-        console.log(author);
-        console.log(pages);
-        console.log(read);
+        read.setAttribute("data-index", `${i}`);
         if (n === 0) {
             read.style.color = "rgb(0, 179, 0)";
             read.innerHTML = myLibrary[i].read;
@@ -100,19 +105,27 @@ submitFormBtn.addEventListener("click", function(event) {
     // clears form inputs
     let inputs = document.querySelectorAll("input");
     inputs.forEach(input => input.value = "");
-    console.log(myLibrary);
 });
 
 // Create button and add to DOM
 function createRemoveBtn (parentNode) {
-        const deleteBookBtn = document.createElement("button");
-        deleteBookBtn.innerHTML = "Remove";
-        deleteBookBtn.setAttribute("class", "deleteBtn");
-        parentNode.appendChild(deleteBookBtn);
+    const deleteBookBtn = document.createElement("button");
+    deleteBookBtn.innerHTML = "Remove";
+    deleteBookBtn.setAttribute("class", "deleteBtn");
+    parentNode.appendChild(deleteBookBtn);
+    for (let i = 0; i < myLibrary.length; i++) {
+        deleteBookBtn.setAttribute("data-index", `${i}`);
+    }
 }
 
 
 // Delete Book from Library and DOM
-deleteBookBtn.addEventListener("click", () => {
-
-})
+function deleteBook() {
+    for(let i = 0; i < myLibrary.length; i++) {
+        deleteButtons[i].addEventListener("click", () => {
+            let getIndex = deleteButtons[i].getAttribute("data-index");
+            document.querySelectorAll(`[data-index="${getIndex}"]`).forEach(e => e.remove());
+            delete myLibrary[`${getIndex}`];
+        });
+    }
+}
