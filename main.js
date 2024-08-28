@@ -56,8 +56,12 @@ function displayBookInfo (i,element) {
         author.style.fontStyle = "italic";
         author.innerHTML = "by "+ myLibrary[i].author;
         const pages = element.querySelector(`#div${i} > .p3`);
-        pages.innerHTML = myLibrary[i].pages + " pages";
+         pages.innerHTML = myLibrary[i].pages + " pages";
         const read = element.querySelector(`#div${i} > .p4`);
+        console.log(title);
+        console.log(author);
+        console.log(pages);
+        console.log(read);
         if (n === 0) {
             read.style.color = "rgb(0, 179, 0)";
             read.innerHTML = myLibrary[i].read;
@@ -96,6 +100,7 @@ submitFormBtn.addEventListener("click", function(event) {
     // clears form inputs
     let inputs = document.querySelectorAll("input");
     inputs.forEach(input => input.value = "");
+    console.log(myLibrary);
 });
 
 // Create button and add to DOM
@@ -105,3 +110,9 @@ function createRemoveBtn (parentNode) {
         deleteBookBtn.setAttribute("class", "deleteBtn");
         parentNode.appendChild(deleteBookBtn);
 }
+
+
+// Delete Book from Library and DOM
+deleteBookBtn.addEventListener("click", () => {
+
+})
