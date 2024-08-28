@@ -46,6 +46,7 @@ function addCards () {
         }
         displayBookInfo(i, childDiv);
         createRemoveBtn(childDiv);
+        createToggleBtn(childDiv);
         i++;
         deleteButtons = document.querySelectorAll(".deleteBtn");
         deleteBook();
@@ -118,6 +119,16 @@ function createRemoveBtn (parentNode) {
     }
 }
 
+function createToggleBtn (parentNode) {
+    const toggleReadBtn = document.createElement("button");
+    toggleReadBtn.innerHTML = "Read"; // Will change this later, but for now will do
+    toggleReadBtn.setAttribute("class", "toggleBtn");
+    parentNode.appendChild(toggleReadBtn);
+    for (let i = 0; i < myLibrary.length; i++) {
+        toggleReadBtn.setAttribute("data-index", `${i}`);
+    }
+}
+
 
 // Delete Book from Library and DOM
 function deleteBook() {
@@ -129,3 +140,6 @@ function deleteBook() {
         });
     }
 }
+
+
+// create toggle button between "read" "not read" on Book prototype instance.
