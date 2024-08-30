@@ -47,6 +47,7 @@ function addCards () {
         displayBookInfo(i, childDiv);
         createRemoveBtn(childDiv);
         createToggleBtn(childDiv);
+        toggleReadStatus ();
         i++;
         deleteButtons = document.querySelectorAll(".deleteBtn");
         deleteBook();
@@ -98,7 +99,7 @@ submitFormBtn.addEventListener("click", function(event) {
     if (yesRead.checked) {
         read = "Read";
     } else if (notRead.checked) {
-        read = "Read";
+        read = "Not Read";
         n++;
     }
     addBookToLibrary(new Book(title, author, pages, read));
@@ -119,17 +120,6 @@ function createRemoveBtn (parentNode) {
     }
 }
 
-function createToggleBtn (parentNode) {
-    const toggleReadBtn = document.createElement("button");
-    toggleReadBtn.innerHTML = "Read"; // Will change this later, but for now will do
-    toggleReadBtn.setAttribute("class", "toggleBtn");
-    parentNode.appendChild(toggleReadBtn);
-    for (let i = 0; i < myLibrary.length; i++) {
-        toggleReadBtn.setAttribute("data-index", `${i}`);
-    }
-}
-
-
 // Delete Book from Library and DOM
 function deleteBook() {
     for(let i = 0; i < myLibrary.length; i++) {
@@ -141,5 +131,36 @@ function deleteBook() {
     }
 }
 
-
 // create toggle button between "read" "not read" on Book prototype instance.
+
+function createToggleBtn (parentNode) {
+    const toggleReadBtn = document.createElement("button");
+    toggleReadBtn.innerHTML = "Read"; // Will change this later, but for now will do
+    toggleReadBtn.setAttribute("class", "toggleBtn");
+    parentNode.appendChild(toggleReadBtn);
+    for (let i = 0; i < myLibrary.length; i++) {
+        toggleReadBtn.setAttribute("data-index", `${i}`);
+    }
+}
+
+// toggle button should change myLibrary.read value and also changes the .p4 innerHTML 
+function toggleReadStatus () {
+    let toggleBtn = document.querySelectorAll(".toggleBtn"); // generate nodeList
+    for (let i = 0; i < myLibrary.length; i++) {
+        toggleBtn[i].addEventListener("click", () => {
+            let getIndex = toggleBtn[i].getAttribute("data-index");
+            let readText = document.querySelector(`.p4[data-index="${getIndex}"]`);
+            let readStatus = myLibrary[`${getIndex}`].read;
+            if (readStatus === "Read") {
+                myLibrary[`${getIndex}`].read = "Not Read";
+                readText.innerHTML = myLibrary[`${getIndex}`].read;
+                readText.style.color="rgb(255, 0, 0)";
+            } else if (readStatus === "Not Read") {
+                myLibrary[`${getIndex}`].read = "Read";
+                readText.innerHTML = myLibrary[`${getIndex}`].read;
+                readText.style.color="rgb(0, 179, 0)";
+            }
+        });
+    }
+}
+
