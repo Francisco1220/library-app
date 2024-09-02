@@ -25,6 +25,7 @@ let getElementsAtIndex;
 // Add the required number of child divs and p elements(one for each book) and append them to the container div 
 let specificChildDiv;
 let i = 0;
+
 function addCards () {
         const childDiv = document.createElement("div");
         childDiv.setAttribute("class", "card");
@@ -47,7 +48,7 @@ function addCards () {
         displayBookInfo(i, childDiv);
         createRemoveBtn(childDiv);
         createToggleBtn(childDiv);
-        toggleReadStatus ();
+        // toggleReadStatus ();
         i++;
         deleteButtons = document.querySelectorAll(".deleteBtn");
         deleteBook();
@@ -141,26 +142,34 @@ function createToggleBtn (parentNode) {
     for (let i = 0; i < myLibrary.length; i++) {
         toggleReadBtn.setAttribute("data-index", `${i}`);
     }
+    toggleReadStatus ();
 }
 
+let checkEventListener = false;
 // toggle button should change myLibrary.read value and also changes the .p4 innerHTML 
 function toggleReadStatus () {
     let toggleBtn = document.querySelectorAll(".toggleBtn"); // generate nodeList
     for (let i = 0; i < myLibrary.length; i++) {
-        toggleBtn[i].addEventListener("click", () => {
-            let getIndex = toggleBtn[i].getAttribute("data-index");
-            let readText = document.querySelector(`.p4[data-index="${getIndex}"]`);
-            let readStatus = myLibrary[`${getIndex}`].read;
-            if (readStatus === "Read") {
-                myLibrary[`${getIndex}`].read = "Not Read";
-                readText.innerHTML = myLibrary[`${getIndex}`].read;
-                readText.style.color="rgb(255, 0, 0)";
-            } else if (readStatus === "Not Read") {
-                myLibrary[`${getIndex}`].read = "Read";
-                readText.innerHTML = myLibrary[`${getIndex}`].read;
-                readText.style.color="rgb(0, 179, 0)";
-            }
-        });
+        // Ensure that only a single event listener is attached to each read button
+        if (toggleBtn[i].getAttribute("data-event-listener-attached") != "true") {
+            toggleBtn[i].addEventListener("click", () => {
+            // toggleBtn[i].setAttribute("data-event-listener-attached", "true");
+            // checkEventListener = toggleBtn[i].getAttribute("data-event-listener-attached");
+                let getIndex = toggleBtn[i].getAttribute("data-index");
+                let readText = document.querySelector(`.p4[data-index="${getIndex}"]`);
+                let readStatus = myLibrary[`${getIndex}`].read;
+                if (readStatus === "Read") {
+                    myLibrary[`${getIndex}`].read = "Not Read";
+                    readText.innerHTML = myLibrary[`${getIndex}`].read;
+                    readText.style.color="rgb(255, 0, 0)";
+                } else if (readStatus === "Not Read") {
+                    myLibrary[`${getIndex}`].read = "Read";
+                    readText.innerHTML = myLibrary[`${getIndex}`].read;
+                    readText.style.color="rgb(0, 179, 0)";
+                }
+            });
+            toggleBtn[i].setAttribute("data-event-listener-attached", "true");
+        }
     }
 }
 
