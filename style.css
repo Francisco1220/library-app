@@ -39,6 +39,7 @@ button {
     background-color: #BDE038;
     font-family: "Roboto";
     border: none;
+    font-weight: 500;
 }
 
 .container {
