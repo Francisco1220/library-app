@@ -90,26 +90,8 @@ showFormBtn.addEventListener("click", () => {
     dialog.showModal();
 });
 
-submitFormBtn.addEventListener("click", function(event) {
-    dialog.close();
-    event.preventDefault();
-    let title = document.getElementById("book_title").value;
-    let author = document.getElementById("book_author").value;
-    let pages = document.getElementById("book_pages").value;
-    let yesRead = document.getElementById("read_yes");
-    let notRead = document.getElementById("read_no");
-    let read;
-    if (yesRead.checked) {
-        read = "Read";
-    } else if (notRead.checked) {
-        read = "Not Read";
-        n++;
-    }
-    addBookToLibrary(new Book(title, author, pages, read));
-    addCards();
-    // clears form inputs
-    let inputs = document.querySelectorAll("input");
-    inputs.forEach(input => input.value = "");
+submitFormBtn.addEventListener("click", function() {
+    
 });
 
 // Create button and add to DOM
@@ -175,3 +157,64 @@ function toggleReadStatus () {
     }
 }
 
+// Validate form using Constraint Validation API
+
+const form = document.getElementById("book-form");
+const bookTitle = document.getElementById("book_title");
+const bookAuthor = document.getElementById("book_author");
+const bookPages = document.getElementById("book_pages");
+const read = document.getElementById("read_yes");
+const notRead = document.getElementById("read_no");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+        showError();
+    } else {
+        dialog.close();
+    let title = document.getElementById("book_title").value;
+    let author = document.getElementById("book_author").value;
+    let pages = document.getElementById("book_pages").value;
+    let yesRead = document.getElementById("read_yes");
+    let notRead = document.getElementById("read_no");
+    let read;
+    if (yesRead.checked) {
+        read = "Read";
+    } else if (notRead.checked) {
+        read = "Not Read";
+        n++;
+    }
+    addBookToLibrary(new Book(title, author, pages, read));
+    addCards();
+    // clears form inputs
+    let inputs = document.querySelectorAll("input");
+    inputs.forEach(input => input.value = "");
+    }
+})
+
+function showError() {
+    if (bookTitle.validity.valueMissing) {
+        bookTitle.setCustomValidity("Title field cannot be empty");
+    } else {
+        bookTitle.setCustomValidity("");
+    }
+
+    if (bookAuthor.validity.valueMissing) {
+        bookAuthor.setCustomValidity("Author field cannot be empty");
+    } else {
+        bookAuthor.setCustomValidity("");
+    }
+    
+    if (bookPages.validity.valueMissing) {
+        bookPages.setCustomValidity("Pages field cannot be empty");
+    } else {
+        bookPages.setCustomValidity("");
+    }
+
+    if (!read.checked && !notRead.checked) {
+        read.setCustomValidity("Please specify whether you have read the book or not");
+    } else {
+        read.setCustomValidity("");
+    }
+    form.reportValidity();
+}
